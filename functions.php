@@ -290,24 +290,25 @@ amzn_assoc_linkid = "7cb74259967239132c8f3fb8d9b5150d";amzn_assoc_asins = "B01MR
 
 //add_action(  'publish_post',  'add_hashTags', 10, 2 );
 
-function add_hashTags( $ID, $post ) {
-    // A function to perform actions when a post is published.
-	$url=$_POST['post_title'];// your post title
-	$keywords=$_POST['tags'];
-	$url = $ID->$url;
-	$APPLICATION_ID = '4ecd9e16';
-$APPLICATION_KEY='be54f0e53443501357865cbc055538aa';
+function add_hashTags( $source ) {
+  echo $keywords = call_api($source);
+        //foreach($hashtags->hashtags as $val) {
+         // echo sprintf(" n %s", $val );
+       // }
+}
 
-function call_api($endpoint, $parameters) {
-  $ch = curl_init('https://api.aylien.com/api/v1/' . $endpoint);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+function call_api($url){
+$APPLICATION_ID = '4ecd9e16';
+$APPLICATION_KEY='be54f0e53443501357865cbc055538aa';
+  $ch = curl_init('https://api.aylien.com/api/v1/' . "hashtags");
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Accept: application/json',
     'X-AYLIEN-TextAPI-Application-Key: ' . APPLICATION_KEY,
     'X-AYLIEN-TextAPI-Application-ID: '. APPLICATION_ID
   ));
   curl_setopt($ch, CURLOPT_POST, true);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $parameters);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $url);
   $response = curl_exec($ch);
   return json_decode($response);
 } 
@@ -422,8 +423,7 @@ add_filter( 'auth_cookie_expiration', 'stay_logged_in_for_1_year' );
 function stay_logged_in_for_1_year( $expire ) {
   return 31556926; // 1 year in seconds
 }
-?>
-<?php
+
 //Clean up the </head>
 function removeHeadLinks(){
 	remove_action('wp_head', 'rsd_link');
@@ -431,4 +431,3 @@ function removeHeadLinks(){
 }
 add_action('init', 'removeHeadLinks');
 remove_action('wp_head', 'wp_generator');
-?>
