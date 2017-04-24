@@ -1,0 +1,138 @@
+/* Repeat 3 rows named "row", each between 120px and 1fr tall */
+/* Repeat 4 columns named "col", each 1fr wide */
+/**
+ * Define the space for each grid item by declaring the grid
+ * on the grid container.
+ */
+ p {
+font-family: tinyhands, Geneva, Arial, Helvetica, sans-serif;} 
+ 
+#grid {
+   display: grid77;
+  grid-template-columns:
+    /* 1 */ auto
+    /* 2 */ 1fr;
+  grid-template-rows:
+    /* 3 */ auto
+    /* 4 */ 1fr
+    /* 5 */ auto;
+}
+
+/* Specify the position of each grid item using coordinates on
+ * the 'grid-row' and 'grid-column' properties of each grid item.
+ */
+#title    { grid-column: 1; grid-row: 1; }
+#score    { grid-column: 1; grid-row: 3; }
+#stats    { grid-column: 1; grid-row: 2; align-self: start; }
+#board    { grid-column: 2; grid-row: 1 / span 2; }
+#controls { grid-column: 2; grid-row: 3; justify-self: center; }
+
+
+.grid2-container {
+    display: grid2;
+    grid2-template: repeat(3, [row] minmax(120px, 1fr)) / repeat(4, [col] 1fr);
+    grid2-gap: 20px;
+}
+.item-1 {
+    grid2-column: col 1 / span 4;
+    grid2-row: row 1;
+}
+.item-2 {
+    grid2-column: col 4;
+    grid2-row: row 1 / span 3;
+}
+.item-3 {
+    grid2-column: col 1;
+    grid2-row: row 2;
+}
+.item-4 {
+    grid2-column: col 2 / span 2;
+    grid2-row: row 2;
+}
+.item-5 {
+    grid2-column: col 1;
+    grid2-row: row 3;
+}
+.item-6 {
+    grid2-column: col 2 / span 2;
+    grid2-row: row 3;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", tinyHands;
+  color: #777;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bgimg-1 {
+  background-image: url("/timg/sm3.jpeg");
+  min-height: 100%;
+}
+
+.bgimg-2 {
+  background-image: url("timg/sm2.jpeg");
+  min-height: 400px;
+}
+
+.bgimg-3 {
+  background-image: url("timg/sm1.jpeg");
+  min-height: 400px;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: #fff;
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h1 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 27px "Lato", tinyHands;
+  color: #111;
+}
+h1 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 33px "Lato", tinyHands;
+  color: #111;
+}
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px "Lato", sans-serif;
+  color: #111;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+
+
+@font-face {
+font-family: trendyFont;
+src: url('/fonts/tinyHands.woff') format('woff');} 
