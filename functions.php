@@ -307,7 +307,7 @@ $APPLICATION_KEY='be54f0e53443501357865cbc055538aa';
   curl_setopt($ch, CURLOPT_POSTFIELDS, $url);
   $response = curl_exec($ch);
    $keywords= json_decode($response);
-   wp_set_post_tags( $ID, $keywords, true )
+   wp_set_post_tags( $ID, $keywords, true );
 } 
  
  
