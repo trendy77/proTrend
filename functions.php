@@ -293,7 +293,7 @@ amzn_assoc_linkid = "7cb74259967239132c8f3fb8d9b5150d";amzn_assoc_asins = "B01MR
 function add_hashTags( $ID, $post ) {
     $post = get_post( $ID );
 	$url1 = $post->$post_name;// A function to perform actions when a post is published.
-	$url= bloginfo('url') . $url1;// your post title
+	$url= bloginfo('url') .'/'. $url1;// your post title
 	$APPLICATION_ID = '4ecd9e16';
 $APPLICATION_KEY='be54f0e53443501357865cbc055538aa';
   $ch = curl_init('https://api.aylien.com/api/v1/hashtags');
@@ -402,22 +402,14 @@ function wpsidebar_widgets_init() {
 		'after_title' => '</h3>',
 	) );
 }
+
 add_action( 'widgets_init', 'wpsidebar_widgets_init' );
 if(function_exists('add_theme_support')){
 	add_theme_support('menus');
 }
- //If you just want to publicize your main RSS feed and remove the other feeds from the , add a line to your functions.php file:
-remove_action( 'wp_head', 'feed_links', 2 );
-remove_action( 'wp_head', 'feed_links_extra', 3 );
-// disable html in comments
-add_filter( 'pre_comment_content', 'esc_html' );
-// remove admin bar'
-add_filter('show_admin_bar', '__return_false');
-// STAY LOGEED IN FOR A YEAR
-// REMOVE EMOJIS FROM WP HEADER
-remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+
 add_filter( 'auth_cookie_expiration', 'stay_logged_in_for_1_year' );
+
 function stay_logged_in_for_1_year( $expire ) {
   return 31556926; // 1 year in seconds
 }
@@ -426,6 +418,17 @@ function stay_logged_in_for_1_year( $expire ) {
 function removeHeadLinks(){
 	remove_action('wp_head', 'rsd_link');
 	remove_action('wp_head', 'wlwmanifest_link');
+ //If you just want to publicize your main RSS feed and remove the other feeds from the , add a line to your functions.php file:
+remove_action( 'wp_head', 'feed_links', 2 );
+remove_action( 'wp_head', 'feed_links_extra', 3 );
+// disable html in comments
+add_filter( 'pre_comment_content', 'esc_html' );
+// remove admin bar'
+add_filter('show_admin_bar', '__return_false');
+// REMOVE EMOJIS FROM WP HEADER
+		remove_action( 'wp_head', 'print_emoji_detection_script', 7);
+		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+		remove_action('wp_head', 'wp_generator');
 }
+
 add_action('init', 'removeHeadLinks');
-remove_action('wp_head', 'wp_generator');
