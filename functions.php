@@ -9,6 +9,42 @@ add_filter( 'post_limits', 'wpcodex_filter_main_search_post_limits', 15, 2 );
 //add_filter('the_content', 'wpse_ad_T');
 add_filter('the_content', 'wpse_ad_content');
 add_theme_support('widgets');
+add_action('wp_head', 'create_meta_desc');
+
+function create_meta_desc() {
+    global $post;
+if (!is_single()) { return; }
+    $meta = strip_tags($post->post_content);
+    $meta = strip_shortcodes($post->post_content);
+    $meta = str_replace(array("\n", "\r", "\t"), ' ', $meta);
+    $meta = substr($meta, 0, 125);
+    echo "<meta name='description' content='$meta' />";
+}
+
+
+/*
+ * Update ALL PUBLISHED posts and pages with the controller post_meta required by the main code
+ *
+ * Important: Run Only Once 
+ * -> Paste in functions.php
+ * -> Remove the comment to add_action
+ * -> Visit any administrative page
+ * -> Delete or disable this code
+ * 
+ */
+//add_action('admin_init','wpse_54258_run_only_once');
+
+function wpse_54258_run_only_once(){   
+    global $wpdb;
+    $allposts = $wpdb->get_results( "SELECT ID FROM $wpdb->posts WHERE post_status = 'published'" );
+    foreach( $allposts as $pt )    {
+        add_hashTags( $pt->$ID, $pt->$url);
+    }
+}
+
+
+
+
 
 //** MY CUSTOM FUNCTIONS ARE : 
 //    **  addSignin() 				// socialLinks()
@@ -292,7 +328,7 @@ amzn_assoc_linkid = "7cb74259967239132c8f3fb8d9b5150d";amzn_assoc_asins = "B01MR
 
 function add_hashTags( $ID, $post ) {
     $post = get_post( $ID );
-	$url1 = $post->$post_name;// A function to perform actions when a post is published.
+	$url1 = $post->$post_name;  // get the slug
 	$url= bloginfo('url') .'/'. $url1;// your post title
 	$APPLICATION_ID = '4ecd9e16';
 $APPLICATION_KEY='be54f0e53443501357865cbc055538aa';
