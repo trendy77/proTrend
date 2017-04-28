@@ -861,10 +861,6 @@ function siteoptions_machine($options) {
 		
 		
 		
-		
-		
-		
-		
 		case "upload_min":
 			
 			$output .= siteoptions_uploader_function($value['id'],$value['std'],'min');
@@ -877,12 +873,6 @@ function siteoptions_machine($options) {
 			$output .= '<div id="' . $value['id'] . '_picker" class="colorSelector"><div></div></div>';
 			$output .= '<input class="of-color" name="'. $value['id'] .'" id="'. $value['id'] .'" type="text" value="'. $val .'" />';
 		break;   
-		
-		
-		
-		
-		
-		
 		
 		 
 		
@@ -916,32 +906,18 @@ function siteoptions_machine($options) {
 		break; 
 		
 		
-		
-		
-		
-		
-		
-		
 		case "info":
 			$default = $value['std'];
 			$output .= $default;
 		break;
 		
 		
-		
-		
-		
-		
-		
-	
-	                                 
-		
 		case "heading":
 			
 			if($counter >= 2){
 			   $output .= '</div>'."\n";
 			}
-			$jquery_click_hook = ereg_replace("[^A-Za-z0-9]", "", strtolower($value['name']) );
+			$jquery_click_hook = preg_replace("[^A-Za-z0-9]", "", strtolower($value['name']) );
 			$jquery_click_hook = "of-option-" . $jquery_click_hook;
 			$menu .= '<li><a title="'.  $value['name'] .'" href="#'.  $jquery_click_hook  .'">'.  $value['name'] .'</a></li>';
 			$output .= '<div class="group" id="'. $jquery_click_hook  .'"><h2>'.$value['name'].'</h2>'."\n";

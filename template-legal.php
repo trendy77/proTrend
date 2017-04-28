@@ -84,8 +84,10 @@ class="alignright size-medium wp-image-3109" height="25" width="30"/>
 </div>
 		</div>			
 						<div class="row">
-               
-                </div>
+               <?php while(have_posts()): the_post(); ?>
+				    <?php the_content(); ?>
+                    <?php endwhile; ?>
+                    </div>
                 </div><!-- /container -->
 				
 			</div>

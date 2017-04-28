@@ -2,7 +2,7 @@
 /*
  * Template Name: Template Blog
  * @package Wordpress
- * @subpackage Travel Theme
+ * @subpackage proTrend
 */
 ?>
 
@@ -14,7 +14,7 @@
 					<div class="container">
 						<div class="row">
 							<section class="col-sm-6">
-								<h1 class="text-upper">Blog Page</h1>
+								<h1 class="text-upper">Latest Articles</h1>
 							</section>
 							
 							<!-- breadcrumbs -->
@@ -22,7 +22,7 @@
 								<ol class="breadcrumb">
 									<li class="home"><a href="#">Home</a></li>
 									<li><a href="#">"Latest Articles</a></li>
-									
+							<?php	addSignin();?>	
 								</ol>
 							</section>
 						</div>
