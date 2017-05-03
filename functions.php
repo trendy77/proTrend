@@ -36,7 +36,7 @@ if (!is_single()) { return; }
 
 function wpse_54258_run_only_once(){   
     global $wpdb;
-    $allposts = $wpdb->get_results( "SELECT ID FROM $wpdb->posts WHERE post_status = 'published'" );
+    $allposts = $wpdb->get_results( "SELECT ID FROM $wpdb->posts WHERE post_status = 'published' LIMIT 10" );
     foreach( $allposts as $pt )    {
         add_hashTags( $pt->$ID, $pt->$url);
     }
@@ -321,6 +321,170 @@ amzn_assoc_linkid = "7cb74259967239132c8f3fb8d9b5150d";amzn_assoc_asins = "B01MR
 <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>'; break;
 }
 } 
+ 
+function expandHomeDirectory($path) {
+  $homeDirectory = getenv('HOME');
+  if (empty($homeDirectory)) {
+    $homeDirectory = getenv('HOMEDRIVE') . getenv('HOMEPATH');
+  }
+  return str_replace('~', realpath($homeDirectory), $path);
+}
+ 
+ 
+function doAline(){
+ $url = expandHomeDirectory($fakeurl);
+
+$fakeurl = '~/home/ckww/AP/vendor/autoload.php';
+//$parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
+require_once $url;
+//include_once 'tPost.php';
+$basPATH = '~/home/ckww/AP/vendor/base.php';
+$base = expandHomeDirectory($basPATH);
+include_once $base;
+
+define('APPLICATION_NAME', 'My Project');
+define('CREDENTIALS_PATH', '~/.credentials/sheets.googleapis.com-php-quickstart.json');
+define('CLIENT_SECRET_PATH', 'tpausecret.json');
+// If modifying these scopes, delete your previously saved credentials
+// at ~/.credentials/sheets.googleapis.com-php-quickstart.json
+define('SCOPES', implode(' ', array(
+  Google_Service_Sheets::SPREADSHEETS)
+));
+
+
+  $client = new Google_Client();
+  $client->setApplicationName(APPLICATION_NAME);
+  $client->setScopes(SCOPES);
+  $client->setAuthConfig(CLIENT_SECRET_PATH);
+  $client->setAccessType('offline');
+  // Load previously authorized credentials from a file.
+  
+  $credentialsPath = expandHomeDirectory(CREDENTIALS_PATH);
+  if (file_exists($credentialsPath)) {
+    $accessToken = json_decode(file_get_contents($credentialsPath), true);
+  } else {
+    // Request authorization from the user.
+    $authUrl = $client->createAuthUrl();
+    //echo("Open the following link in your browser:\n%s\n", $authUrl);
+    echo 'Enter verification code: ';
+    $authCode = trim(fgets(STDIN));
+    // Exchange authorization code for an access token.
+    $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+    if(!file_exists(dirname($credentialsPath))) {
+      mkdir(dirname($credentialsPath), 0700, true);
+    }
+    file_put_contents($credentialsPath, json_encode($accessToken));
+    echof("Credentials saved to %s\n", $credentialsPath);
+  }
+  $client->setAccessToken($accessToken);
+ if ($client->isAccessTokenExpired()) {
+    $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+    file_put_contents($credentialsPath, json_encode($client->getAccessToken()));
+  }
+  $service = new Google_Service_Sheets($client);
+  $spreadsheetId =get_option('sheetId', $sheetoption);  
+  if (!isset($spreadsheetId){
+  $spreadsheetId ="1RnmnEB6tX_Ic6Gf6EWbJyIa9yZZ2lQwSQFz5UO1vQsw";
+} }
+    $getline = file_get_contents('line.txt', NULL, NULL, 0, 4) 
+    if (!isset($getline){
+      $getline=5;
+    }
+$range = 'Sheet1!A'.$getline. ':H' . $getline;
+$response = $service->spreadsheets_values->get($spreadsheetId, $range);
+$values = $response->getValues();
+     if (count($values) == 0) {
+      echo "No data found.\n";
+} else {
+ 	  foreach ($values as $row) {
+	   $title=$row[0];
+    	$body=$row[1];
+    	$articleUrl=$row[2];
+    	$category=$row[3].$row[4];
+    	$image=$row[5];
+	    $identifier = $row[6];
+	    $keywords=$row[7];
+		}
+		$catIds = array();
+		foreach ($category as $cat) {
+		    $idObj = get_category_by_slug($cat);
+		    $zid = $idObj->term_id;
+		    array_push($catIds, $zid);
+		  }	
+			if ($keywords == null){
+			 $keywords = get_hashTags($articleUrl);
+			 } 
+	       	$post_excerpt=strip_tags($row[1]);	
+if(isset$_POST['do']){
+
+  echo post_title;
+}
+ 		$my_post = array(
+						'post_title' => $title,
+						'post_content' => $body,
+						'post_status' => 'publish',
+						'post_author' => 1,
+						'post_category' => $catIds
+				);
+		$postId = wp_insert_post( $my_post );
+			if (is_numeric($postId)){
+			$file = "results.txt";
+			$woohoo = '/n'.$postId;
+			$getline=$getline++;
+		echo file_put_contents($file, $woohoo, FILE_APPEND | LOCK_EX);
+		echo file_put_contents("line.txt",$getline);
+    	} else {
+			$file = 'results.txt';
+			$boo = '/n'.$postId . $post_title;
+			echo file_put_contents($file, $boo, FILE_APPEND | LOCK_EX);
+			}
+	}
+
+
+
+
+function get_hashTags( $articleUrl ) {
+  echo $keywords = call_api( $articleUrl );
+   }
+
+function call_api($url){
+$APPLICATION_ID = '4ecd9e16';
+$APPLICATION_KEY='be54f0e53443501357865cbc055538aa';
+  $ch = curl_init('https://api.aylien.com/api/v1/hashtags');
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Accept: application/json',
+    'X-AYLIEN-TextAPI-Application-Key: ' . APPLICATION_KEY,
+    'X-AYLIEN-TextAPI-Application-ID: '. APPLICATION_ID
+  ));
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $url);
+  $response = curl_exec($ch);
+  return json_decode($response);
+} 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
 
