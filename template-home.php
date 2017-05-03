@@ -23,9 +23,7 @@
 										echo '';
 							}
 	   					 ?>
-														
-						
-							
+																	
 							<!-- LAYER NR. 2 -->
 							<div class="caption caption-white sfr stl slider-heading text-upper"
 								data-x="20"

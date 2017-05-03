@@ -41,17 +41,10 @@ $sample_advanced_array = array("image" => "The Image","post" => "The Post");
 //Folder Paths for "type" => "images"
 $sampleurl =  get_template_directory_uri() . '/admin/images/sample-layouts/';
 
-
-
-
-
 /*-----------------------------------------------------------------------------------*/
 /* Create The Custom Site Options Panel
 /*-----------------------------------------------------------------------------------*/
 $options = array(); // do not delete this line - sky will fall
-
-
-
 
 /* Option Page 1 - All Options */	
 $options[] = array( "name" => __('General Settings','framework_localize'),
@@ -110,7 +103,7 @@ $options[] = array( "name" => __('Dohop Whitelabel Name','framework_localize'),
 $options[] = array( "name" => __('Amozon ID','framework_localize'),
 			"desc" => __('Enter your Amazon associate id.','framework_localize'),
 			"id" => $shortname."_amazonid",
-			"std" => "",
+			"std" => "trendypublish-20",
 			"type" => "text");
 			
 			
@@ -264,8 +257,6 @@ $options[] = array( "name" => __('Bottom Home Ads','framework_localize'),
 $options[] = array( "name" => __('Footer Options','framework_localize'),
 			"type" => "heading");
 												
-
-
 				
 $options[] = array( "name" => __('Google Adsense','framework_localize'),
 			"desc" => __('Paste your google adsense code here. This ad will appear on the footer bottom','framework_localize'),
@@ -277,14 +268,9 @@ $options[] = array( "name" => __('Google Adsense','framework_localize'),
 $options[] = array( "name" => __('Tracking Code','framework_localize'),
 			"desc" => __('Paste Google Analytics (or other) tracking code here.','framework_localize'),
 			"id" => $shortname."_google_analytics",
-			"std" => "",
+			"std" => getGappsTag(),
 			"type" => "textarea");			
-
-				
-										
-					
-
-
+			
 update_option('of_template',$options); 					  
  
 update_option('of_shortname',$shortname);
