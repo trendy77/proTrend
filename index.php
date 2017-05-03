@@ -22,7 +22,7 @@
 			</div>
 			<!-- END #page-header -->
 	<div class="sidebar-social">
-highlight_file
+<?php socialLinks();?>
 	</div>	
 
  

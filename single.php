@@ -30,16 +30,10 @@
 				<div class="container">
                 <div class="row">
                 <div class="post-desc">
-					<?php while(have_posts()): the_post(); ?>
+					<?php while(have_posts());?>
                     <h1><?php the_title(); ?></h1>
                     <?php the_content(); ?>
-                    <?php
-                     // If comments are open or we have at least one comment, load up the comment template.
-                    if ( comments_open() || get_comments_number() ) :
-                        comments_template();
-                    endif;
-					?>
-                    <?php endwhile; ?>
+                  
                    </div>  
                    </div>   
                 </div><!-- /container -->
