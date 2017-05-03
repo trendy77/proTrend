@@ -5,16 +5,16 @@
 							<nav class="col-md-12">
 								<ul class="footer-menu">
 									<li><a href="<?php bloginfo('url');?>">Home</a></li>
-									<li><a href="http://organisemybiz.com/bizfeed">#bizFeed</a></li>
-									<li><a href="http://organisemybiz.com/contentfeed">#contentFeed</a></li>
-                                <li><a href="http://globetravelsearch.com/travelBlog">travelBlog</a></li>
-								 <li><a href="http://customkitsworldwide.com">FootballFeed</a></li>     
-								 	 <li><a href="http://govnews.info">GovNews</a></li>	
-									 <li><a href="http://vapedirectory.co">VapeDirectory</a></li>
-								 <li><a href="<?php bloginfo('url');?>/store">Store</a></li>
-									<li><a href="<?php bloginfo('url');?>/videos">Videos</a></li>
-									<li><a href="<?php bloginfo('url');?>/trending">Trending</a></li>
-                               <li><a href="http://trendypublishing.com">Corporate</a></li>
+									<li><a href="https://organisemybiz.com/bizfeed" target="_blank">#bizFeed</a></li>
+									<li><a href="https://organisemybiz.com/contentfeed" target="_blank">#contentFeed</a></li>
+                                <li><a href="https://globetravelsearch.com/travelblog" target="_blank">travelBlog</a></li>
+								 <li><a href="https://customkitsworldwide.com" target="_blank">FootballFeed</a></li>     
+								 	 <li><a href="https://govnews.info" target="_blank">GovNews</a></li>	
+									 <li><a href="https://vapedirectory.co" target="_blank">VapeDirectory</a></li>
+								 <li><a href="<?php bloginfo('url');?>/store" target="_blank">Store</a></li>
+									<li><a href="<?php bloginfo('url');?>/videos" target="_blank">Videos</a></li>
+									<li><a href="<?php bloginfo('url');?>/trending" target="_blank">Trending</a></li>
+                               <li><a href="https://trendypublishing.com">Corporate</a></li>
 							   <li><a href="<?php bloginfo('url');?>/contact">Contact</a></li>
 						</ul>
 							</nav>
@@ -25,8 +25,7 @@
 <img src="https://organisemybiz.com/wp-content/uploads/2017/03/giphy-1.gif" alt="organiseMyBiz logo"
  title="organisemybiz.com | 24hr live business news feed with expert advice and tips for SMEs and business owners"
 class="alignright size-medium wp-image-3109" height="80" width="80"/>
-
-									
+			
 								</div>
 								<div class="foot-box foot-box-md col-md-4">
 									<div class = "footer-legals">

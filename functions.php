@@ -36,7 +36,7 @@ if (!is_single()) { return; }
 
 function wpse_54258_run_only_once(){   
     global $wpdb;
-    $allposts = $wpdb->get_results( "SELECT ID FROM $wpdb->posts WHERE post_status = 'published'" );
+    $allposts = $wpdb->get_results( "SELECT ID FROM $wpdb->posts WHERE post_status = 'published' LIMIT 10" );
     foreach( $allposts as $pt )    {
         add_hashTags( $pt->$ID, $pt->$url);
     }
@@ -134,28 +134,28 @@ function switchHead(){
 function getGappsTag(){
 	$url = home_url();
 	switch ( $url ) {
-	case 'http://organisemybiz.com';
+	case 'http://organisemybiz.com':
 	echo 'UA-84079763-5';
 	break;
-	case 'http://es.organisemybiz.com';
+	case 'http://es.organisemybiz.com':
 	echo 'UA-84079763-10';
 	break;
-	case 'http://vapedirectory.co';
+	case 'http://vapedirectory.co':
 	echo 'UA-84079763-9';
 	break;
-	case 'http://globetravelsearch.com';
+	case 'http://globetravelsearch.com':
 	echo 'UA-84079763-13';
 	break;
-	case 'http://customkitsworldwide.com';
+	case 'http://customkitsworldwide.com':
 	echo 'UA-85225777-1';
 	break;
-	case 'http://govnews.info';
+	case 'http://govnews.info':
 	echo 'UA-84079763-8';
 	break;
-	case 'http://fakenewsregistry.org/es';
+	case 'http://fakenewsregistry.org/es':
 	echo 'UA-84079763-6';
 	break;
-	case 'http://fakenewsregistry.org';
+	case 'http://fakenewsregistry.org':
 	echo 'UA-84079763-11';
 	break;
 	case 'http://trendypublishing.com':
@@ -207,31 +207,31 @@ switch ( $url ) {
 function fbappid(){	
 $url = home_url();
 	switch ($url){
-	case http://es.organisemybiz.com;
+	case http://es.organisemybiz.com
 	echo '1209167032497461';
 	break;
-	case http://organisemybiz.com;
+	case http://organisemybiz.com
 	echo '1209167032497461';
 	break;
-	case http://vapedirectory.co;
+	case http://vapedirectory.co
 	echo '1829696163961982';
 	break;
-	case http://globetravelsearch.com;
+	case http://globetravelsearch.com
 	echo '232122247192377';
 	break;
-	case http://customkitsworldwide.com;
+	case http://customkitsworldwide.com
 	echo '1863943023885616';
 	break;
-	case http://es.customkitsworldwide.com;
+	case http://es.customkitsworldwide.com
 	echo '1863943023885616';
 	break;
-	case http://govnews.info;
+	case http://govnews.info
 	echo '1645038759139286';
 	break;
-	case http://fakenewsregistry.org/es;
+	case http://fakenewsregistry.org/es
 	echo '1883167178608105';
 	break;
-	case http://fakenewsregistry.org;
+	case http://fakenewsregistry.org
 	echo '1883167178608105';
 	break;
 	}
@@ -322,10 +322,171 @@ amzn_assoc_linkid = "7cb74259967239132c8f3fb8d9b5150d";amzn_assoc_asins = "B01MR
 }
 } 
  
+function expandHomeDirectory($path) {
+  $homeDirectory = getenv('HOME');
+  if (empty($homeDirectory)) {
+    $homeDirectory = getenv('HOMEDRIVE') . getenv('HOMEPATH');
+  }
+  return str_replace('~', realpath($homeDirectory), $path);
+}
+ 
+ 
+function doAline(){
+ $url = expandHomeDirectory($fakeurl);
+
+$fakeurl = '~/AP/vendor/autoload.php';
+//$parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
+require_once $url;
+//include_once 'tPost.php';
+$basPATH = '~/AP/vendor/base.php';
+$base = expandHomeDirectory($basPATH);
+include_once $base;
+
+define('APPLICATION_NAME', 'My Project');
+define('CREDENTIALS_PATH', '~/.credentials/sheets.googleapis.com-php-quickstart.json');
+define('CLIENT_SECRET_PATH', 'tpausecret.json');
+// If modifying these scopes, delete your previously saved credentials
+// at ~/.credentials/sheets.googleapis.com-php-quickstart.json
+define('SCOPES', implode(' ', array(
+  Google_Service_Sheets::SPREADSHEETS)
+));
+
+
+  $client = new Google_Client();
+  $client->setApplicationName(APPLICATION_NAME);
+  $client->setScopes(SCOPES);
+  $client->setAuthConfig(CLIENT_SECRET_PATH);
+  $client->setAccessType('offline');
+  // Load previously authorized credentials from a file.
+  
+  $credentialsPath = expandHomeDirectory(CREDENTIALS_PATH);
+  if (file_exists($credentialsPath)) {
+    $accessToken = json_decode(file_get_contents($credentialsPath), true);
+  } else {
+    // Request authorization from the user.
+    $authUrl = $client->createAuthUrl();
+    //echo("Open the following link in your browser:\n%s\n", $authUrl);
+    echo 'Enter verification code: ';
+    $authCode = trim(fgets(STDIN));
+    // Exchange authorization code for an access token.
+    $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+    if(!file_exists(dirname($credentialsPath))) {
+      mkdir(dirname($credentialsPath), 0700, true);
+    }
+    file_put_contents($credentialsPath, json_encode($accessToken));
+    echo("Credentials saved ");
+  }
+  $client->setAccessToken($accessToken);
+ if ($client->isAccessTokenExpired()) {
+    $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+    file_put_contents($credentialsPath, json_encode($client->getAccessToken()));
+  }
+  $service = new Google_Service_Sheets($client);
+  $spreadsheetId =get_option('sheetId', $sheetoption);  
+  if (!isset($spreadsheetId)){
+  $spreadsheetId ="1RnmnEB6tX_Ic6Gf6EWbJyIa9yZZ2lQwSQFz5UO1vQsw";
+} 
+    $getline=file_get_contents('line.txt',NULL,NULL,0,4); 
+    if (!isset($getline)){
+      $getline=5;
+    }
+$range = 'Sheet1!A'.$getline. ':H' . $getline;
+$response = $service->spreadsheets_values->get($spreadsheetId, $range);
+$values = $response->getValues();
+     if (count($values) == 0) {
+      echo "No data found.\n";
+} else {
+ 	  foreach ($values as $row) {
+	   $title=$row[0];
+    	$body=$row[1];
+    	$articleUrl=$row[2];
+    	$category=$row[3].$row[4];
+    	$image=$row[5];
+	    $identifier = $row[6];
+	    $keywords=$row[7];
+		}
+		$catIds = array();
+		foreach ($category as $cat) {
+		    $idObj = get_category_by_slug($cat);
+		    $zid = $idObj->term_id;
+		    array_push($catIds, $zid);
+		  }	
+			if ($keywords == null){
+			 $keywords = get_hashTags($articleUrl);
+			 } 
+	       	$post_excerpt=strip_tags($row[1]);	
+  echo $post_title;
+ 		$my_post = array(
+						'post_title' => $title,
+						'post_content' => $body,
+						'post_status' => 'publish',
+						'post_author' => 1,
+						'post_category' => array( $category->term_id )
+				);
+		$postId = wp_insert_post( $my_post );
+			if (is_numeric($postId)){
+			$file="results.txt";
+			$woohoo = '/n'.$postId;
+			$getline=$getline++;
+		echo file_put_contents($file,$woohoo,FILE_APPEND|LOCK_EX);
+		echo file_put_contents("line.txt",$getline);
+     return $postId; 
+	} else {
+			$file='results.txt';
+			$boo = '/n'.$postId . $post_title;
+			echo file_put_contents($file,$boo,FILE_APPEND|LOCK_EX);
+			}
+	}
+}
+
+
+
+function get_hashTags( $articleUrl ) {
+  echo $keywords = call_api( $articleUrl );
+   }
+
+function call_api($url){
+$APPLICATION_ID = '4ecd9e16';
+$APPLICATION_KEY='be54f0e53443501357865cbc055538aa';
+  $ch = curl_init('https://api.aylien.com/api/v1/hashtags');
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Accept: application/json',
+    'X-AYLIEN-TextAPI-Application-Key: ' . APPLICATION_KEY,
+    'X-AYLIEN-TextAPI-Application-ID: '. APPLICATION_ID
+  ));
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $url);
+  $response = curl_exec($ch);
+  return json_decode($response);
+} 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 
 //add_action(  'publish_post',  'add_hashTags', 10, 2 );
-
 function add_hashTags( $ID, $post ) {
     $post = get_post( $ID );
 	$url1 = $post->$post_name;  // get the slug
@@ -425,7 +586,7 @@ $paragraphAfterT = 6; //Enter number of paragraphs to display ad after.
         $new_contentT= $content[$i] . "</p>";		$new_content= $content[$i] . "</p>";
     }
     return $new_contentT;	
-	}
+}
 
 function wpsidebar_widgets_init() {
  	register_sidebar( array(
@@ -445,26 +606,22 @@ if(function_exists('add_theme_support')){
 }
 
 add_filter( 'auth_cookie_expiration', 'stay_logged_in_for_1_year' );
-
 function stay_logged_in_for_1_year( $expire ) {
   return 31556926; // 1 year in seconds
 }
 
-//Clean up the </head>
 function removeHeadLinks(){
 	remove_action('wp_head', 'rsd_link');
 	remove_action('wp_head', 'wlwmanifest_link');
  //If you just want to publicize your main RSS feed and remove the other feeds from the , add a line to your functions.php file:
 remove_action( 'wp_head', 'feed_links', 2 );
 remove_action( 'wp_head', 'feed_links_extra', 3 );
-// disable html in comments
-add_filter( 'pre_comment_content', 'esc_html' );
-// remove admin bar'
-add_filter('show_admin_bar', '__return_false');
 // REMOVE EMOJIS FROM WP HEADER
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7);
 		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 		remove_action('wp_head', 'wp_generator');
+// disable html in comments// remove admin bar'
+add_filter( 'pre_comment_content', 'esc_html' );
+add_filter('show_admin_bar', '__return_false');
 }
-
 add_action('init', 'removeHeadLinks');

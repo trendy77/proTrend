@@ -55,11 +55,11 @@ h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
 <link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/css/newTp.css"/>
 	<!-- template stylesheet -->
 		<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" media="all" />
- <?php if (is_page_template('template-bizfeed.php')) { ?>
+ <?php if (is_page_template('template-content.php')) { ?>
  
         <link href="<?php bloginfo('template_url'); ?>/css/styles.css" rel="stylesheet" type="text/css" />
         <?php } ?>
-   <?php if (is_page_template('template-tours.php')) { ?>
+   <?php if (is_page_template('template-latest.php')) { ?>
         <link href="<?php bloginfo('template_url'); ?>/css/tour-styles.css" rel="stylesheet" type="text/css" />
         <?php } ?>
           <?php if (is_page_template('template-cruise.php')) { ?>
@@ -114,20 +114,15 @@ h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
 							</div>
 							<div class="col-md-9">
 								<nav class="main-nav">
-									<span>MAIN MENU</span>
-									<ul id="main-menu">
+									<span><?php bloginfo('title'); ?></span>
+							<ul id="main-menu">
 										<li><a href="<?php get_option('home'); ?>" title="HOME">HOME</a></li>
-										<li><a href="<?php get_option('site_domain');?>/latest" title="LATEST">Latest</a></li> 		
+									<li><a href="<?php get_option('site_domain');?>/latest" title="LATEST">Latest</a></li> 		
+														<?php switchHead();?>
 										<li><a href="<?php get_option('site_domain');?>/services" title="CATEGORIES">Categories</a></li>	
 										<li><a href="<?php get_option('site_domain');?>/reviews" title="REVIEWS">Reviews</a></li>
 										<li><a href="<?php get_option('site_domain');?>/videos" title="VIDEOS">Videos</a></li>
-										
-										<?php switchHead();?>
-							
-											} else {
-												echo '<li><a href="' . get_option('site_domain') . '/contact" title="more">More...</a></li>';
-										}
-							        ?>
+	<li><a href="<?php get_option('site_domain');?>/contact" title="contact">Contact Us</a></li>
 								</ul>
 								</nav>
 							</div>
