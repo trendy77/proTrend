@@ -132,109 +132,19 @@ function switchHead(){
 }
 
 function getGappsTag(){
-	$url = home_url();
-	switch ( $url ) {
-	case 'http://organisemybiz.com':
-	echo 'UA-84079763-5';
-	break;
-	case 'http://es.organisemybiz.com':
-	echo 'UA-84079763-10';
-	break;
-	case 'http://vapedirectory.co':
-	echo 'UA-84079763-9';
-	break;
-	case 'http://globetravelsearch.com':
-	echo 'UA-84079763-13';
-	break;
-	case 'http://customkitsworldwide.com':
-	echo 'UA-85225777-1';
-	break;
-	case 'http://govnews.info':
-	echo 'UA-84079763-8';
-	break;
-	case 'http://fakenewsregistry.org/es':
-	echo 'UA-84079763-6';
-	break;
-	case 'http://fakenewsregistry.org':
+	
+	
 	echo 'UA-84079763-11';
-	break;
-	case 'http://trendypublishing.com':
-	echo 'UA-84079763-11';
-	break;
-	case 'http://trendypublishing.com.au':
-	echo 'UA-84079763-11';
-	break;
-	}
+	
 }
 
 function getGTM(){
-$url = home_url();
-switch ( $url ) {
-	case http://organisemybiz.com:
-	echo 'GTM-NX26K25';
-	break;
-	case http://es.organisemybiz.com;
-	echo 'GTM-NX26K25';
-	break;
-	case http://vapedirectory.co;
-	echo 'GTM-NX26K25';
-	break;
-	case http://globetravelsearch.com;
-	echo 'GTM-NX26K25';
-	break;
-	case http://customkitsworldwide.com;
-	echo 'GTM-NX26K251';
-	break;
-	case http://govnews.info;
-	echo 'GTM-NX26K25';
-	break;
-	case http://fakenewsregistry.org/es;
-	echo 'GTM-NX26K25';
-	break;
-	case http://fakenewsregistry.org;
-	echo 'GTM-NX26K25';
-	break;
-	case http://trendypublishing.com:
-	echo 'GTM-NX26K25';
-	break;
-	case http://trendypublishing.com.au:
-	echo 'GTM-NX26K25';
-	break;
-	}	
+
 }
  
  
 function fbappid(){	
-$url = home_url();
-	switch ($url){
-	case http://es.organisemybiz.com
-	echo '1209167032497461';
-	break;
-	case http://organisemybiz.com
-	echo '1209167032497461';
-	break;
-	case http://vapedirectory.co
-	echo '1829696163961982';
-	break;
-	case http://globetravelsearch.com
-	echo '232122247192377';
-	break;
-	case http://customkitsworldwide.com
-	echo '1863943023885616';
-	break;
-	case http://es.customkitsworldwide.com
-	echo '1863943023885616';
-	break;
-	case http://govnews.info
-	echo '1645038759139286';
-	break;
-	case http://fakenewsregistry.org/es
-	echo '1883167178608105';
-	break;
-	case http://fakenewsregistry.org
-	echo '1883167178608105';
-	break;
-	}
+
 }
 
  
